@@ -1,20 +1,35 @@
 {
-  "name": "pactum-contract",
+  "name": "ebac-api-tests",
   "version": "1.0.0",
-  "description": "Testes de Contrato com Pactum",
+  "description": "Testes de API REST, GraphQL e contratos utilizando PactumJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.test.js",
-    "test:gql": "mocha ./test/graphql/**/*.test.js",
+    "test": "npm run test:rest && npm run test:gql && npm run test:contract && npm run test:report",
+
     "test:rest": "mocha ./test/api/**/*.test.js",
-    "test:contractProvider": "mocha ./test/contract/loginProvider.test.js",
-    "test:contractConsumer": "mocha ./test/contract/loginConsumer.test.js"
+    "test:gql": "mocha ./test/graphql/**/*.test.js",
+
+    "test:contract": "mocha ./test/api/**/*.contract.test.js ./test/graphql/**/*.contract.test.js",
+
+    "test:report": "mocha ./test/**/*.test.js --reporter mochawesome --reporter-options reportDir=reports,reportFilename=index,quiet=true",
+
+    "test:rest:report": "mocha ./test/api/**/*.test.js --reporter mochawesome --reporter-options reportDir=reports/rest,reportFilename=index",
+
+    "test:gql:report": "mocha ./test/graphql/**/*.test.js --reporter mochawesome --reporter-options reportDir=reports/graphql,reportFilename=index"
   },
-  "keywords": [],
-  "author": "ernestosbarbosa",
+  "keywords": [
+    "api-tests",
+    "pactum",
+    "graphql",
+    "rest",
+    "contract-tests",
+    "qa"
+  ],
+  "author": "Adriano",
   "license": "ISC",
   "devDependencies": {
     "mocha": "^10.3.0",
+    "mochawesome": "^7.1.4",
     "pactum": "^3.6.0"
   },
   "dependencies": {
