@@ -7,7 +7,6 @@ let token;
 let categoryId;
 
 beforeEach(async () => {
-  // Gera token antes de cada teste
   token = await spec()
     .post('/public/authUser')
     .withJson({
@@ -31,7 +30,7 @@ describe('API - Categorias', () => {
       .expectJsonMatch({
         message: like('Categoria criada com sucesso')
       })
-      .returns('data._id'); // salva o ID da categoria
+      .returns('data._id'); 
   });
 
   it('Deve editar a categoria criada', async () => {
